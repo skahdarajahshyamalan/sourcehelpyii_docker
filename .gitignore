@@ -1,0 +1,55 @@
+# Yii2 Advanced Project Template .gitignore
+
+# Yii2 specific
+/vendor/
+/node_modules/
+/bower_components/
+
+# Runtime files
+/backend/runtime/*
+!/backend/runtime/.gitignore
+/frontend/runtime/*
+!/frontend/runtime/.gitignore
+/console/runtime/*
+!/console/runtime/.gitignore
+/common/runtime/*
+!/common/runtime/.gitignore
+
+# Environment files
+/common/config/main-local.php
+/common/config/params-local.php
+/backend/config/main-local.php
+/backend/config/params-local.php
+/frontend/config/main-local.php
+/frontend/config/params-local.php
+/console/config/main-local.php
+/console/config/params-local.php
+
+# Asset files
+/backend/web/assets/*
+!/backend/web/assets/.gitignore
+/frontend/web/assets/*
+!/frontend/web/assets/.gitignore
+
+# Test files
+/codeception.yml
+/tests/_output/*
+!/tests/_output/.gitignore
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Docker
+.docker/
+

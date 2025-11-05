@@ -1,0 +1,73 @@
+services:
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: sourcehelpyii_docker_frontend
+    ports:
+      - "4570:80"
+    volumes:
+      # Mount source-code for development
+      - ./:/app
+    depends_on:
+      mysql:
+        condition: service_started
+      backend:
+        condition: service_started
+    networks:
+      - yii2-network
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: sourcehelpyii_docker_backend
+    ports:
+      - "4569:80"
+    volumes:
+      # Mount source-code for development
+      - ./:/app
+    depends_on:
+      mysql:
+        condition: service_started
+    networks:
+      - yii2-network
+
+  mysql:
+    image: mysql:5.7
+    container_name: sourcehelpyii_docker_mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: verysecret
+      MYSQL_DATABASE: yii2advanced
+      MYSQL_USER: yii2advanced
+      MYSQL_PASSWORD: secret
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - yii2-network
+    ports:
+      - "3306:3306"
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: sourcehelpyii_docker_phpmyadmin
+    ports:
+      - "4571:80"
+    environment:
+      PMA_HOST: mysql
+      PMA_USER: yii2advanced
+      PMA_PASSWORD: secret
+      MYSQL_ROOT_PASSWORD: verysecret
+    depends_on:
+      mysql:
+        condition: service_started
+    networks:
+      - yii2-network
+
+volumes:
+  mysql_data:
+
+networks:
+  yii2-network:
+    driver: bridge
