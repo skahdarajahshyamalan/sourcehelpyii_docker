@@ -7,6 +7,7 @@ use yii\base\InvalidArgumentException;
 use yii\web\BadRequestHttpException;
 use frontend\models\Faq;
 use frontend\models\Faqsearch;
+use frontend\models\FaqQuestion;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -131,7 +132,7 @@ class FaqController extends Controller
         
         $Tags = Faq::find()->where(['tagname' =>$Tags])->one();
         $provider = new ActiveDataProvider([
-        'query' => Faq::find()->where(['id' =>json_decode($Tags->question_idlist)]),
+        'query' => FaqQuestion::find()->where(['auto' =>json_decode($Tags->question_idlist)]),
         'pagination' => [
             'pageSize' => 10,
         ],

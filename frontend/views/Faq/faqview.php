@@ -13,7 +13,7 @@ use frontend\models\Faq;
    ?>
    <hr >
    <!-- <p></p> -->
-    <a href="/replay-tagname?id=<?=urlencode($item->id)?>&&question=<?=urlencode($item->heading)?>"><?php echo $item->heading ?></a>
+    <a href="/replay-tagname?id=<?=urlencode($item->auto)?>&&question=<?=urlencode($item->heading)?>"><?php echo $item->heading ?></a>
    <?php 
    //$test = unserialize($item->suggestedAnswerlist);
    //var_dump($test);

@@ -17,7 +17,7 @@ class Faqsearch extends Faq
     public function rules()
     {
         return [
-            [['id', 'created_at', 'updated_at', 'created_by'], 'integer'],
+            [['auto', 'created_at', 'updated_at', 'created_by'], 'integer'],
             [['tagname', 'discription', 'question_idlist'], 'safe'],
         ];
     }
@@ -58,7 +58,7 @@ class Faqsearch extends Faq
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'id' => $this->id,
+            'auto' => $this->auto,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'created_by' => $this->created_by,
